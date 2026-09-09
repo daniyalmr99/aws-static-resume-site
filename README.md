@@ -1,102 +1,145 @@
-# AWS Cloud Resume – Serverless Web Application
+# AWS Cloud Resume
 
 ## Project Overview
-Built and deployed a cloud-hosted resume website using AWS. The frontend is stored in Amazon S3 and delivered through CloudFront over HTTPS. I also built a serverless visitor counter using API Gateway, AWS Lambda, and DynamoDB.
 
----
+I built this project to get hands-on experience with AWS and learn how to host and deploy a website using cloud services.
 
-## Architecture Diagram
+The website is a simple online resume hosted on **Amazon S3** and delivered through **Amazon CloudFront**. I also added a visitor counter that uses **Amazon API Gateway** to communicate with the backend.
 
+I used GitHub to keep track of my project files and documentation.
+
+## Architecture
+
+The basic setup of my project looks like this:
+
+```text
 User
-  │
-Amazon CloudFront
-  │
-Amazon S3
-  │
+  |
+  v
+CloudFront
+  |
+  v
+S3
+  |
+  v
 Static Resume Website
 
-Visitor Counter:
-Browser -> API Gateway -> AWS Lambda -> Amazon DynamoDB
 
-
-## AWS Services Used
-Amazon S3: Stores the website’s HTML, CSS, and JavaScript files. Direct public access is restricted so the site is served through CloudFront.
-
-CloudFront
-
-Change to:
-
-Amazon CloudFront: Delivers the website globally over HTTPS and caches content for faster loading.
-
+Visitor Counter
+  |
+  v
 API Gateway
+  |
+  v
+Backend
+  |
+  v
+Database
+```
 
-Change to:
+## AWS Services I Used
 
-Amazon API Gateway: Provides the API endpoint used by the website to request and update the visitor count.
+### Amazon S3
 
-Lambda
+I used S3 to store the files for my resume website, including my HTML, CSS, and JavaScript files.
 
-Change to:
+### Amazon CloudFront
 
-AWS Lambda: Runs the Python code that processes visitor-count requests without requiring a server.
+I used CloudFront to deliver my website and enable HTTPS. It also helps deliver the website faster by using AWS's content delivery network.
 
-DynamoDB
+### Amazon API Gateway
 
-This one especially sounds AI-ish right now:
+I used API Gateway for the visitor counter. The JavaScript on my website sends a request to the API, which then communicates with the backend.
 
-Operates as a NoSQL persistent data storage layer, incrementing live visitor traffic counts.
+### Backend / Database
 
-Change it to:
+The visitor counter uses a backend and database connected to API Gateway.
 
-Amazon DynamoDB: Stores and updates the website’s visitor count.
+**Backend:** `AWS Lambda (running Python)`
 
-Much better.
+**Database:** `[Amazon DynamoDB]`
 
-⸻
+## Features
 
- 5.⁠ ⁠Change “Key Features”
+* Resume website hosted on AWS
+* Website files stored in Amazon S3
+* CloudFront for content delivery
+* HTTPS access
+* Visitor counter
+* API integration
+* GitHub repository for source code and documentation
 
-I wouldn’t remove this section, but simplify it.
+## How It Works
 
-Replace the current bullets with:
+When someone visits my website, the request goes through CloudFront and the website files are served from S3.
 
-•⁠  ⁠Global Content Delivery: Website content is delivered through Amazon CloudFront.
-•⁠  ⁠HTTPS: Traffic is securely served over HTTPS.
-•⁠  ⁠Serverless Backend: API Gateway, Lambda, and DynamoDB power the visitor counter without a traditional server.
-•⁠  ⁠Dynamic Visitor Counter: JavaScript retrieves the visitor count from the API without reloading the page.
-•⁠  ⁠Version Control: Project files and documentation are maintained with Git and GitHub.
+The visitor counter works separately. When the page loads, JavaScript sends a request to my API Gateway endpoint. The backend processes the request and returns the visitor count, which is then displayed on the website.
 
-One important correction: the current README says:
+## What I Learned
 
-Version Control: Complete source code and resource definitions maintained in a GitHub repository.
+While working on this project, I learned more about:
 
-I would remove “resource definitions” unless he actually has Infrastructure-as-Code files such as CloudFormation/Terraform/SAM/CDK in the repo. From the screenshots, I only see README.md, index.html, and the screenshot. We don’t want his README claiming something he hasn’t actually uploaded.
+* Hosting websites with Amazon S3
+* Setting up CloudFront
+* HTTPS and CDN basics
+* Working with API Gateway
+* Connecting JavaScript to an API
+* Basic serverless architecture
+* AWS permissions and configuration
+* Troubleshooting AWS services
+* Using GitHub to manage my project
 
-⸻
+## Technologies
 
- 6.⁠ ⁠Rewrite “What I Learned”
+* HTML
+* CSS
+* JavaScript
+* Amazon S3
+* Amazon CloudFront
+* Amazon API Gateway
+* AWS Lambda (Python)
+* Amazon DynamoDB
+* GitHub
 
-This is where we can make the project sound much more like Daniyal actually wrote it.
+## Project Structure
 
-Replace that entire section with:
-
-What I Learned
-
-•⁠  ⁠CloudFront & S3: Learned how to host a static website in S3 and deliver it securely through CloudFront.
-•⁠  ⁠Serverless APIs: Learned how API Gateway, Lambda, and DynamoDB can work together to create a backend without managing a server.
-•⁠  ⁠API Integration: Connected the frontend to the backend using JavaScript fetch() requests.
-•⁠  ⁠Cloud Security: Learned how to restrict direct access to the S3 bucket and serve the website through CloudFront.
-
-And if he actually had to troubleshoot CORS, add:
-
-•⁠  ⁠Troubleshooting: Worked through CORS issues between the frontend and API and learned how to configure the required headers.
-
-That is excellent interview material because someone can ask him, “What problem did you run into?” and he can actually explain it.
-
-⸻
-
+```text
+.
+├── index.html
+├── website-screenshot.png
+└── README.md
 
 ## Proof of Concept
 
-![Live Website Screenshot](website-screenshot.png)
-*Live Cloud Resume interface displaying dynamic visitor counter metrics.*
+### Website
+
+![Website Screenshot](website-screenshot.png)
+
+### Website
+
+*Add a screenshot of my deployed resume website here.*
+
+### AWS Setup
+
+*Add a screenshot of my AWS configuration here.*
+
+## Future Improvements
+
+Some things I would like to add or improve in the future:
+
+* Set up automatic deployment using CI/CD
+* Learn and use Infrastructure as Code
+* Add better monitoring and logging
+* Improve the design of the website
+* Add more AWS security controls
+* Build a larger serverless application
+
+**GitHub Repository:** `[Add GitHub URL]`
+**GitHub Repository:** `https://github.com/daniyalmr99/aws-static-resume-site`
+**Live Website:** `https://doxwnfbixueh8.cloudfront.net/`
+
+**GitHub Repository:** `[Add GitHub URL]`
+
+## About Me
+
+I am currently building my AWS and cloud skills through hands-on projects. This project was one of my first projects using AWS, and I built it to understand how different AWS services can work together to host and deliver a real application.
