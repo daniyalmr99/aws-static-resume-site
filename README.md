@@ -115,6 +115,11 @@ While working on this project, I learned more about:
 
 ![Website Screenshot](website-screenshot.png)
 
+## Future Improvements
+### Website
+
+![Website Screenshot](website-screenshot.png)
+
 ### Website
 
 *Add a screenshot of my deployed resume website here.*
@@ -122,6 +127,11 @@ While working on this project, I learned more about:
 ### AWS Setup
 
 *Add a screenshot of my AWS configuration here.*
+## Links
+
+**Live Website:** `https://doxwnfbixueh8.cloudfront.net/`
+
+**GitHub Repository:** `https://github.com/daniyalmr99/aws-static-resume-site`
 
 ## Future Improvements
 
