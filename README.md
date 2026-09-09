@@ -2,101 +2,97 @@
 
 ## Project Overview
 
-I built this project to get hands-on experience with AWS and learn how to host and deploy a website using cloud services.
+I built and deployed a serverless cloud resume on AWS using Amazon S3, CloudFront, API Gateway, AWS Lambda, and DynamoDB.
 
-The website is a simple online resume hosted on **Amazon S3** and delivered through **Amazon CloudFront**. I also added a visitor counter using **Amazon API Gateway**, **AWS Lambda**, and **Amazon DynamoDB**.
+The static frontend is hosted in Amazon S3 and delivered securely through CloudFront. A serverless backend built with API Gateway, Python, AWS Lambda, and DynamoDB powers a live visitor counter.
 
-I used GitHub to manage my project files and documentation.
+This project demonstrates hands-on experience integrating multiple AWS services to build and deploy a functional cloud application.
 
 ## Architecture
 
-The basic architecture of my project looks like this:
+The application uses a static frontend with a separate serverless backend:
 
 ```text
-                         User
-                           |
-                           v
-                    Amazon CloudFront
-                           |
-                           v
-                       Amazon S3
-                           |
-                           v
-                  Static Resume Website
-
-
-                    Visitor Counter
-                           |
-                           v
-                   Amazon API Gateway
-                           |
-                           v
-                      AWS Lambda
-                        (Python)
-                           |
-                           v
-                    Amazon DynamoDB
-```
+User
+ |
+ v
+Amazon CloudFront
+ |
+ v
+Amazon S3
+ |
+ v
+Static Resume Website
+ |
+ | JavaScript API Request
+ v
+Amazon API Gateway
+ |
+ v
+AWS Lambda (Python)
+ |
+ v
+Amazon DynamoDB
+ ```
 
 ## AWS Services I Used
 
 ### Amazon S3
 
-I used Amazon S3 to store the files for my resume website, including my HTML, CSS, JavaScript, and image files.
+I used Amazon S3 to host and store the static files for my resume website, including my HTML, CSS, JavaScript, and image assets.
 
 ### Amazon CloudFront
 
-I used Amazon CloudFront to deliver my website over HTTPS and improve content delivery by using AWS's content delivery network.
+I used Amazon CloudFront to securely deliver the website over HTTPS and improve performance by caching content at AWS edge locations.
 
 ### Amazon API Gateway
 
-I used Amazon API Gateway to create the API endpoint used by my visitor counter. The JavaScript on my website sends a request to the API when the page loads.
+I used Amazon API Gateway to create a REST API endpoint that connects the website to the serverless backend. When the page loads, JavaScript sends a request to the API, which triggers a Lambda function.
 
 ### AWS Lambda
 
-I used AWS Lambda with Python to handle the visitor counter requests. The Lambda function processes the request and communicates with DynamoDB to retrieve and update the visitor count.
+I used AWS Lambda with Python to handle the visitor counter logic. The function retrieves the current count from DynamoDB, increments it, saves the updated value, and returns the new count through API. 
 
 ### Amazon DynamoDB
 
-I used Amazon DynamoDB to store the visitor count. The database allows the counter to keep track of the number of visits to my website.
+I used Amazon DynamoDB to persist the visitor count. Each request processed by the Lambda function updates the stored count, allowing the website to maintain an accurate total across visits.
 
 ## Features
 
-* Resume website hosted on AWS
-* Website files stored in Amazon S3
-* CloudFront content delivery
-* HTTPS access
-* Serverless visitor counter
-* REST API integration
-* AWS Lambda backend written in Python
-* DynamoDB database
-* GitHub source control and documentation
+•⁠  ⁠Static resume website hosted with Amazon S3
+•⁠  ⁠Global content delivery using Amazon CloudFront
+•⁠  ⁠Secure HTTPS access
+•⁠  ⁠Serverless visitor counter with real-time updates
+•⁠  ⁠REST API built with Amazon API Gateway
+•⁠  ⁠Serverless backend using AWS Lambda and Python
+•⁠  ⁠Visitor data stored in Amazon DynamoDB
+•⁠  ⁠Frontend-to-backend integration using JavaScript
+•⁠  ⁠Source control and project documentation with GitHub
 
 ## How It Works
 
-When someone visits my website, the request goes through **Amazon CloudFront**, which delivers the website files stored in **Amazon S3**.
+When a user visits the website, Amazon CloudFront securely delivers the static content stored in Amazon S3 over HTTPS.
 
-The visitor counter works separately from the static website. When the page loads, JavaScript sends a request to my **Amazon API Gateway** endpoint.
+The visitor counter runs separately from the static website. When the page loads, JavaScript sends a request to the Amazon API Gateway endpoint.
 
-API Gateway sends the request to my **AWS Lambda** function. The Lambda function uses **Amazon DynamoDB** to retrieve and update the visitor count.
+API Gateway forwards the request to the AWS Lambda function. The Lambda function retrieves the current visitor count from the Amazon DynamoDB, increments it, and saves the updated value.
 
-The updated visitor count is then returned through the API and displayed on the website.
+The updated visitor count is then returned through the API Gateway to the frontend, where JavaScript displays the new count on the website.
 
 ## What I Learned
 
-While working on this project, I gained hands-on experience with:
+Through this project, I gained hands-on experience with:
 
-* Hosting a website using Amazon S3
-* Setting up Amazon CloudFront
-* Using HTTPS and CDN services
-* Creating and working with an API using API Gateway
-* Writing a backend function using Python and AWS Lambda
-* Using DynamoDB to store application data
-* Connecting JavaScript to an AWS API
-* Understanding basic serverless architecture
-* Working with AWS permissions and configuration
-* Troubleshooting AWS services
-* Using GitHub to manage source code and documentation
+•⁠  ⁠Hosting and delivering static web content using Amazon S3 and CloudFront
+•⁠  ⁠Configuring HTTPS delivery through CloudFront
+•⁠  ⁠Building and integrating a REST API with Amazon API Gateway
+•⁠  ⁠Writing serverless backend logic using Python and AWS Lambda
+•⁠  ⁠Reading and updating application data with Amazon DynamoDB
+•⁠  ⁠Connecting frontend JavaScript to a serverless AWS backend
+•⁠  ⁠Configuring AWS permissions between services
+•⁠  ⁠Understanding serverless application architecture
+•⁠  ⁠Troubleshooting and testing AWS service integrations
+•⁠  ⁠Managing source code and project documentation with GitHub
 
 ## Technologies
 
@@ -120,7 +116,7 @@ While working on this project, I gained hands-on experience with:
 └── README.md
 ```
 
-## Proof of Concept
+## Deployment
 
 ### Live Website
 
@@ -156,17 +152,15 @@ S3 + CloudFront
 ```
 
 ## Future Improvements
+Planned improvements for this project include:
 
-Some improvements I would like to make to this project in the future include:
-
-* Set up automatic deployment using CI/CD
-* Learn and use Infrastructure as Code
-* Add better monitoring and logging
-* Continue improving the website design
-* Add additional AWS security controls
-* Expand the project into a larger serverless application
-
-## Links
+•⁠  ⁠Automate deployments using GitHub Actions (CI/CD)
+•⁠  ⁠Implement Infrastructure as Code using Terraform
+•⁠  ⁠Add monitoring and logging with Amazon CloudWatch
+•⁠  ⁠Configure a custom domain using Amazon Route 53
+•⁠  ⁠Strengthen IAM permissions and security controls
+•⁠  ⁠Add automated testing
+## Live Demo
 
 **Live Website:**
 https://doxwnfbixueh8.cloudfront.net/
@@ -176,4 +170,4 @@ https://github.com/daniyalmr99/aws-static-resume-site
 
 ## About Me
 
-I am building my AWS and cloud skills through hands-on projects. This project was one of my first projects using AWS, and I built it to understand how different AWS services can work together to host and deliver a real application.
+I am developing hands-on cloud engineering experience by designing and deploying projects on AWS. This project demonstrates my ability to integrate multiple AWS services into a functional application with a static frontend and serverless backend.
