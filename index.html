@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniyal Umar - Cloud Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 { color: #2c3e50; }
+        .counter {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f4f4f4;
+            border-left: 5px solid #0073bb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Daniyal Umar</h1>
+    <p>Welcome to my Cloud Resume hosted on AWS S3 and distributed globally via CloudFront.</p>
+
+    <hr>
+
+    <h2>About Me</h2>
+    <p>Cloud & DevOps enthusiast skilled in AWS, Serverless architectures, and Infrastructure as Code.</p>
+
+    <div class="counter">
+        Visitor Count: <span id="counter">Loading...</span>
+    </div>
+
+    <script>
+        fetch('https://yziukpq581.execute-api.us-east-1.amazonaws.com/count')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('counter').innerText = data.views;
+            })
+            .catch(error => {
+                console.error('Error fetching visitor count:', error);
+                document.getElementById('counter').innerText = '1';
+            });
+    </script>
+
+</body>
+</html>
